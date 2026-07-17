@@ -515,7 +515,7 @@ function PageContent() {
       <main style={{ width: "100%", overflowX: "hidden" }}>
         <ScrollExpandMedia
           mediaSrc="/salarie.jpg"
-          bgImageSrc="/paysagiste-2.jpg"
+          bgImageSrc="/chato.jpg"
           title="Votre jardin, une œuvre vivante."
           scrollToExpand="Faire défiler pour découvrir"
         >
