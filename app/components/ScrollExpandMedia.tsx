@@ -13,7 +13,7 @@ interface Props {
   children?: ReactNode;
 }
 
-const ScrollExpandMedia = ({ mediaSrc, bgImageSrc, title, scrollToExpand, children }: Props) => {
+const ScrollExpandMedia = ({ mediaSrc, bgImageSrc, scrollToExpand, children }: Props) => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [fullyExpanded, setFullyExpanded] = useState(false);
   const [showContent, setShowContent] = useState(false);
@@ -59,7 +59,8 @@ const ScrollExpandMedia = ({ mediaSrc, bgImageSrc, title, scrollToExpand, childr
     const handleWheel = (e: Event) => {
       const we = e as WheelEvent;
       if (fullyExpanded && we.deltaY < 0 && window.scrollY <= 5) {
-        setFullyExpanded(false); setShowContent(false);
+        setFullyExpanded(false);
+        setShowContent(false);
         setScrollProgress(0.95);
         we.preventDefault();
       } else if (!fullyExpanded) {
@@ -114,32 +115,51 @@ const ScrollExpandMedia = ({ mediaSrc, bgImageSrc, title, scrollToExpand, childr
       <section style={{ position: 'relative', minHeight: '100dvh', display: 'flex', flexDirection: 'column' }}>
         <div style={{ position: 'relative', width: '100%', minHeight: '100dvh', display: 'flex', flexDirection: 'column' }}>
 
+          {/* IMAGE DE FOND — paysagiste-2.jpg */}
           <motion.div style={{ position: 'absolute', inset: 0, zIndex: 0 }}
             animate={{ opacity: 1 - scrollProgress }}
             transition={{ duration: 0.1 }}>
-            <Image src={bgImageSrc} alt="Background" fill style={{ objectFit: 'cover', objectPosition: 'center' }} priority />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(28,43,26,0.9) 0%, rgba(28,43,26,0.4) 50%, rgba(28,43,26,0.3) 100%)' }} />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(28,43,26,0.3), transparent)' }} />
+            <Image src={bgImageSrc} alt="Fond jardin" fill priority
+              style={{ objectFit: 'cover', objectPosition: 'center' }} />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(28,43,26,0.92) 0%, rgba(28,43,26,0.5) 40%, rgba(28,43,26,0.2) 100%)' }} />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(28,43,26,0.4), transparent 60%)' }} />
           </motion.div>
 
-          <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: `${mediaW}px`, height: `${mediaH}px`, maxWidth: '95vw', maxHeight: '85vh', borderRadius: scrollProgress > 0.8 ? '0' : '16px', overflow: 'hidden', boxShadow: `0 0 ${60 - scrollProgress * 60}px rgba(28,43,26,0.4)`, transition: 'border-radius 0.3s', zIndex: 5 }}>
-            <Image src={mediaSrc} alt="Hero" fill style={{ objectFit: 'cover', objectPosition: 'center 30%' }} />
-            <motion.div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.3)' }}
-              animate={{ opacity: 0.6 - scrollProgress * 0.5 }}
+          {/* IMAGE CENTRALE ANIMÉE — salarie.jpg */}
+          <div style={{
+            position: 'absolute', top: '50%', left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: `${mediaW}px`, height: `${mediaH}px`,
+            maxWidth: '95vw', maxHeight: '85vh',
+            borderRadius: scrollProgress > 0.8 ? '0' : '16px',
+            overflow: 'hidden',
+            boxShadow: `0 0 ${60 - scrollProgress * 60}px rgba(28,43,26,0.5)`,
+            transition: 'border-radius 0.3s',
+            zIndex: 5,
+          }}>
+            <Image src={mediaSrc} alt="Paysagiste au travail" fill
+              style={{ objectFit: 'cover', objectPosition: 'center 30%' }} />
+            <motion.div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.3)' }}
+              animate={{ opacity: 0.6 - scrollProgress * 0.55 }}
               transition={{ duration: 0.2 }} />
           </div>
 
-          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 10, padding: '0 clamp(1.5rem,5vw,4rem) clamp(4rem,7vw,7rem)' }}>
+          {/* TEXTES — en bas à gauche */}
+          <div style={{
+            position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 10,
+            padding: '0 clamp(1.5rem,5vw,4rem) clamp(4rem,7vw,7rem)',
+          }}>
             <motion.div style={{ transform: `translateX(-${textShift}vw)` }}>
               <p style={{ fontFamily: 'Cormorant Garamond,Georgia,serif', fontStyle: 'italic', color: '#C4A882', fontSize: 'clamp(1rem,1.5vw,1.2rem)', letterSpacing: '0.2em', marginBottom: '1rem' }}>
                 Entre Ciel et Vert
               </p>
-              <h1 style={{ fontFamily: 'Cormorant Garamond,Georgia,serif', fontSize: 'clamp(3rem,7vw,6.5rem)', lineHeight: 1.05, letterSpacing: '-0.02em', color: '#F7F4EF', fontWeight: 400, maxWidth: '56rem' }}>
-                Votre jardin,<br /><em style={{ fontWeight: 300 }}>une œuvre vivante.</em>
+              <h1 style={{ fontFamily: 'Cormorant Garamond,Georgia,serif', fontSize: 'clamp(3rem,7vw,6.5rem)', lineHeight: 1.05, letterSpacing: '-0.02em', color: '#F7F4EF', fontWeight: 400, maxWidth: '56rem', margin: '0 0 1.5rem' }}>
+                Votre jardin,<br />
+                <em style={{ fontWeight: 300 }}>une œuvre vivante.</em>
               </h1>
             </motion.div>
-            <motion.div style={{ transform: `translateX(${textShift}vw)`, marginTop: '1.5rem', maxWidth: '36rem' }}>
-              <p style={{ fontFamily: 'Inter,system-ui,sans-serif', color: 'rgba(247,244,239,0.8)', fontSize: 'clamp(0.9rem,1.2vw,1.1rem)', fontWeight: 300, lineHeight: 1.7, marginBottom: '2rem' }}>
+            <motion.div style={{ transform: `translateX(${textShift}vw)` }}>
+              <p style={{ fontFamily: 'Inter,system-ui,sans-serif', color: 'rgba(247,244,239,0.8)', fontSize: 'clamp(0.9rem,1.2vw,1.1rem)', fontWeight: 300, lineHeight: 1.7, maxWidth: '36rem', marginBottom: '2rem' }}>
                 Alexandre Phelip conçoit et réalise des espaces extérieurs sur mesure, pensés pour durer et évoluer avec les saisons.
               </p>
               {scrollToExpand && (
@@ -150,11 +170,13 @@ const ScrollExpandMedia = ({ mediaSrc, bgImageSrc, title, scrollToExpand, childr
             </motion.div>
           </div>
 
+          {/* CONTENU SECTIONS */}
           <motion.div style={{ width: '100%' }}
             animate={{ opacity: showContent ? 1 : 0 }}
             transition={{ duration: 0.7 }}>
             {children}
           </motion.div>
+
         </div>
       </section>
     </div>
