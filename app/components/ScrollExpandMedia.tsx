@@ -149,7 +149,7 @@ const ScrollExpandMedia = ({
               priority
               style={{ objectFit: 'cover', objectPosition: 'center 45%' }}
             />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(28,43,26,0.85) 0%, rgba(28,43,26,0.4) 50%, rgba(28,43,26,0.15) 100%)' }} />
+            <div style={{ position: 'absolute', inset: 0, background: background: 'rgba(28,43,26,0.15)' }} />
           </motion.div>
 
           <div style={{ width: '100%', maxWidth: '1280px', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', zIndex: 10 }}>
