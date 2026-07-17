@@ -35,7 +35,6 @@ const ScrollExpandMedia = ({
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const { pendingTarget, clearTarget } = useNavigation();
 
-  // ── Navigation onglets → expansion hero puis scroll ──────────
   useEffect(() => {
     if (!pendingTarget) return;
     if (mediaFullyExpanded) {
@@ -148,10 +147,9 @@ const ScrollExpandMedia = ({
               alt="Fond jardin"
               fill
               priority
-              style={{ objectFit: 'cover', objectPosition: 'center bottom' }}
+              style={{ objectFit: 'cover', objectPosition: 'center 60%' }}
             />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(28,43,26,0.92) 0%, rgba(28,43,26,0.45) 50%, rgba(28,43,26,0.2) 100%)' }} />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(28,43,26,0.35), transparent 60%)' }} />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(28,43,26,0.85) 0%, rgba(28,43,26,0.4) 50%, rgba(28,43,26,0.15) 100%)' }} />
           </motion.div>
 
           <div style={{ width: '100%', maxWidth: '1280px', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative', zIndex: 10 }}>
@@ -180,13 +178,13 @@ const ScrollExpandMedia = ({
                 />
               </div>
 
-              {/* TEXTES */}
-              <div style={{ position: 'relative', zIndex: 10, width: '100%', padding: '0 clamp(1.5rem,5vw,4rem)' }}>
+              {/* TEXTES CENTRÉS */}
+              <div style={{ position: 'relative', zIndex: 10, width: '100%', padding: '0 clamp(1.5rem,5vw,4rem)', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <motion.div style={{ transform: `translateX(-${textTranslateX}vw)` }}>
                   <p style={{ fontFamily: 'Cormorant Garamond,Georgia,serif', fontStyle: 'italic', color: '#C4A882', fontSize: 'clamp(1rem,1.5vw,1.2rem)', letterSpacing: '0.2em', marginBottom: '1rem' }}>
                     Entre Ciel et Vert
                   </p>
-                  <h1 style={{ fontFamily: 'Cormorant Garamond,Georgia,serif', fontSize: 'clamp(3rem,7vw,6.5rem)', lineHeight: 1.05, letterSpacing: '-0.02em', color: '#F7F4EF', fontWeight: 400, maxWidth: '56rem', margin: '0 0 1.5rem' }}>
+                  <h1 style={{ fontFamily: 'Cormorant Garamond,Georgia,serif', fontSize: 'clamp(3rem,7vw,6.5rem)', lineHeight: 1.05, letterSpacing: '-0.02em', color: '#F7F4EF', fontWeight: 400, margin: '0 0 1.5rem' }}>
                     Votre jardin,<br />
                     <em style={{ fontWeight: 300 }}>une œuvre vivante.</em>
                   </h1>
