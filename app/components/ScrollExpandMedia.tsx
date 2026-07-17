@@ -147,7 +147,7 @@ const ScrollExpandMedia = ({
               alt="Fond jardin"
               fill
               priority
-              style={{ objectFit: 'cover', objectPosition: 'center 60%' }}
+              style={{ objectFit: 'cover', objectPosition: 'center 45%' }}
             />
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(28,43,26,0.85) 0%, rgba(28,43,26,0.4) 50%, rgba(28,43,26,0.15) 100%)' }} />
           </motion.div>
